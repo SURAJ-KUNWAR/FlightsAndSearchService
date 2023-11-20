@@ -1,4 +1,4 @@
-const {CityService, CityService} = require("../services/index")
+const {CityService} = require("../services/index")
 
 const cityService = new CityService();
 
@@ -89,4 +89,12 @@ const update = async(req,res) =>{
         })
        
     }
+}
+
+
+module.exports = {
+    create,
+    destroy,
+    get,
+    update
 }

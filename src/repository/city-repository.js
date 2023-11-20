@@ -7,6 +7,7 @@ class CityRepository {
             return city;
         }catch(error){
             console.log("Something wnet wrong in city repository")
+            console.log({name})
             throw{error}
         }
     }
