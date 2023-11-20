@@ -39,10 +39,14 @@ class CityRepository {
     async updateCity (data , cityId){
        
         try{
-            const city = City.update(data , {where : {
-                id : cityId
-            }})
-            return city
+            // const city = City.update(data , {where : {
+            //     id : cityId
+            // }})
+            // return city
+        const city = await City.findByPk(cityId)
+        city.name = data.name;
+        await city.save();
+        return city;
         }catch(err){
             console.log("Something wnet wrong in city repository")
             throw{err}
