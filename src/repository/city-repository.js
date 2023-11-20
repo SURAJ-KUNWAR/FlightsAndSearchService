@@ -54,7 +54,15 @@ class CityRepository {
         
     }
         
-      
+    async getAllCities(cityId){
+        try {
+            const cities  = City.findAll()
+            return cities 
+        }catch(err){
+            console.log("Something wnet wrong in city repository")
+            throw{err}
+        }
+    }
     
 }
 
