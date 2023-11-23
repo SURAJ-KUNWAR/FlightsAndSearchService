@@ -14,6 +14,16 @@ class CityRepository {
         }
     }
 
+    async createCities (cityArray){
+        try{
+            const cities = await City.bulkCreate(cityArray);
+            return cities;
+        }catch(error){
+            console.log("Something wnet wrong in city repository")
+            throw{error}
+        }
+    }
+
     async deleteCity (cityId){
         try{
          await City.destroy({
