@@ -3,8 +3,8 @@ const {AirportService} = require("../services/index")
 const airportService = new AirportService();
 
 const create = async( req ,res) =>{
-    try {
-        const airport = await airportService.createAirport(res.body)
+    try { 
+        const airport = await airportService.createAirport(req.body)
         return res.status(201).json({
             data : airport,
             success : true,
@@ -17,7 +17,7 @@ const create = async( req ,res) =>{
             data : {},
             success : false,
             message : "not able to create a city",
-            err : err
+            err : error
         })
     }
    
@@ -26,9 +26,9 @@ const create = async( req ,res) =>{
 
 const destroy = async(req,res) =>{
     try {
-        const res = await airportService.deleteAirport(req.params.id)
+        const response = await airportService.deleteAirport(req.params.id)
         return res.status(200).json({
-            data : res,
+            data : response,
             success : true,
             message : "Successfully deleted a airport",
             err : {}
@@ -66,7 +66,7 @@ const get = async(req,res) =>{
 
 const update = async(req,res) =>{
     try {
-        const airport = await airportService.updateAirport(res.body , req.params.id)
+        const airport = await airportService.updateAirport(req.body , req.params.id)
         return res.status(200).json({
             data : airport,
             success : true,

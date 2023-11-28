@@ -1,11 +1,9 @@
 
-const {Airport} = require ("../models/airport.js")
-
+const {Airport} = require ("../models/index")
 class AirportRepository {
-
-
     async createAirport ({name , address , cityId}) {
         try {
+           
             const airport =await  Airport.create({name , address , cityId})
             return airport
         } catch (error) {
@@ -29,21 +27,21 @@ class AirportRepository {
 
     async getAirport (airportId) {
         try {
-            const airport = await Airport.findByPk(airportId)
+                        const airport = await Airport.findByPk(airportId)
             return airport 
         } catch (error) {
             console.log("Something went wrong in repository layer")
             throw{error}
         }
     }
-    async updateAirport (airportId , data) {
+    async updateAirport (data, airportId  ) {
         try {
-            const airport = await Airport.update(data , {
-                where : { 
-                      id : airportId
-                }
-            })
-            return airport 
+            const airport = await Airport.findByPk(airportId)
+            airport.name = data.name
+            airport.cityId = data.cityId
+            await airport.save()
+            return airport
+             
         } catch (error) {
             console.log("Something went wrong in repository layer")
             throw{error}

@@ -6,11 +6,11 @@ class AirportService {
         this.airportRepository = new AirportRepository();
     }
     async createAirport (data){
-        try {
+        try { 
             const airport  = await  this.airportRepository.createAirport(data)
             return airport
         } catch (error) {
-            console.log("something went wrong in airport service")
+                        console.log("something went wrong in airport service")
             throw {error}
         }
     }
